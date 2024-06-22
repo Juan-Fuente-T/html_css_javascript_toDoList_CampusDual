@@ -215,8 +215,9 @@ footer {
     flex-direction: column;
   }
   #add-task-container input {
-    width: 94%;
-    margin: 1% auto;
+    width: auto;
+    max-width: 100%;
+    margin-left: 2%;
     padding: 8px;
   }
   #add-task-container button {
