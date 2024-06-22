@@ -158,6 +158,21 @@ h2 {
   width: 80%;
   word-wrap: break-word;
 }
+#undoneContainer {
+  min-height: 250px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background-color: rgba(255, 0, 0, 0.038);
+}
+#doneContainer {
+  min-height: 250px;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: rgba(0, 128, 0, 0.043);
+  margin-bottom: 15px;
+}
+
 _footer {
   text-align: center;
   background-color: #e1dede;

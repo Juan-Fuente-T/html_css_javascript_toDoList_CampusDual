@@ -14,8 +14,12 @@ input.addEventListener('keypress', function (event) {
 
 function addTask() {
     if (input.value.length > 0) {
+        
+        let taskDivContainer = document.getElementById("undoneContainer");
+        
         let taskDiv = document.createElement("div");
         taskDiv.className = "task";
+        taskDivContainer.appendChild(taskDiv);
         let mark = createMarkAsDoneIcon()
         taskDiv.appendChild(mark);
         mark.addEventListener('click', markAsDone);
@@ -36,13 +40,17 @@ function addTask() {
         limitDateInput.value = '';
         localStorage.setItem(task.id, JSON.stringify(task));
         taskDiv.id = task.id;
-        toDoContainer.appendChild(taskDiv)
+        // toDoContainer.appendChild(taskDiv);
+        taskDivContainer.appendChild(taskDiv);
     }
 }
 
 function markAsDone() {
+    let taskDivContainerDone = document.getElementById("doneContainer");      
+    
     this.classList.toggle("hidden");
-    doneContainer.appendChild(this.parentNode);
+    // doneContainer.appendChild(this.parentNode);
+    taskDivContainerDone.appendChild(this.parentNode);
     // doneContainer.style="color: red";
     // let taskName = document.getElementById("task_name");
     // taskName.style="color: red";
@@ -57,8 +65,11 @@ function markAsDone() {
 }
 
 function markAsNotDone() {
+    let taskDivContainer = document.getElementById("undoneContainer");      
+
     this.classList.toggle("hidden");
-    toDoContainer.appendChild(this.parentNode);
+    // toDoContainer.appendChild(this.parentNode);
+    taskDivContainer.appendChild(this.parentNode);
     this.parentNode.children[0].classList.toggle("hidden");
     let taskId = this.parentNode.id;
     let taskString = localStorage.getItem(taskId);
@@ -155,6 +166,8 @@ function Task(taskName, taskLimit, taskDone) {
 }
 
 function recoverTaskFromLocalStorage() {
+    let taskDivContainer = document.getElementById("undoneContainer");      
+    let taskDivContainerDone = document.getElementById("doneContainer");      
     for (let i = 0; i < localStorage.length; i++) {
         // console.log(localStorage.getItem(localStorage.key(i)))
         let taskObj = JSON.parse(localStorage.getItem(localStorage.key(i)));
@@ -162,9 +175,9 @@ function recoverTaskFromLocalStorage() {
         let taskHTML = createRecoveredTaskFromLocalStorage(taskObj);
         if((taskObj.id).includes("task-")){
             if (taskObj.taskDone) {
-                doneContainer.appendChild(taskHTML);
+                taskDivContainerDone.appendChild(taskHTML);
             } else {
-                toDoContainer.appendChild(taskHTML);
+                taskDivContainer.appendChild(taskHTML);
             }           
         }
     }
